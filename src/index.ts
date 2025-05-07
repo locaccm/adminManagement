@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import userRoutes from './routes/userRoutes';
 
 dotenv.config();
@@ -7,7 +8,7 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-
+app.use(cors()); 
 // Test route
 app.get('/', (req: Request, res: Response) => {
   res.send('Admin Dashboard API OK!');

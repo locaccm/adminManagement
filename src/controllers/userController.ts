@@ -34,3 +34,15 @@ export const updateUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Erreur modification utilisateur' });
   }
 };
+export const getUserById = async (req: Request, res: Response) => {
+    const userId = parseInt(req.params.id);
+    try {
+      const user = await prisma.user.findUnique({
+        where: { USEN_ID: userId },
+      });
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Erreur récupération utilisateur' });
+    }
+  };
+  
