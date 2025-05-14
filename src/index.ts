@@ -6,11 +6,12 @@ import eventRoutes from './routes/eventRoutes';
 import messageRoutes from './routes/messageRoutes';
 import accommodationRoutes from './routes/accommodationRoutes';
 import leaseRoutes from './routes/leaseRoutes';
+import { setupSwagger } from './swagger';
 
 dotenv.config();
 
 const app = express();
-
+setupSwagger(app);
 app.use(express.json());
 app.use(cors()); 
 // Test route
