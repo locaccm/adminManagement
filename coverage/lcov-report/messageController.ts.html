@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for userController.ts</title>
+    <title>Code coverage report for messageController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> userController.ts</h1>
+        <h1><a href="index.html">All files</a> messageController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">94.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>17/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/20</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
@@ -108,14 +108,12 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -125,19 +123,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,65 +139,66 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
 &nbsp;
-// Liste des utilisateurs avec filtres type, nom, prénom...
-export const getUsers = async (req: Request, res: Response) =&gt; {
-  const { type, nom, prenom } = req.query;
-&nbsp;
-  try {
-    const users = await prisma.user.findMany({
-      where: {
-        USEC_TYPE: type ? String(type) : <span class="branch-1 cbranch-no" title="branch not covered" >undefined,</span>
-        USEC_LNAME: nom ? { contains: String(nom) } : <span class="branch-1 cbranch-no" title="branch not covered" >undefined,</span>
-        USEC_FNAME: prenom ? { contains: String(prenom) } : <span class="branch-1 cbranch-no" title="branch not covered" >undefined,</span>
-      },
-    });
-    res.json(users);
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: 'Erreur récupération utilisateurs' });</span>
-  }
-};
-&nbsp;
-// Modifier un utilisateur
-export const updateUser = async (req: Request, res: Response) =&gt; {
-  const userId = parseInt(req.params.id);
-  const { USEC_LNAME, USEC_FNAME, USEC_ADDRESS, USEC_TEL, USEC_BIO } = req.body;
-&nbsp;
-  try {
-    const user = await prisma.user.update({
-      where: { USEN_ID: userId },
-      data: { USEC_LNAME, USEC_FNAME, USEC_ADDRESS, USEC_TEL, USEC_BIO },
-    });
-    res.json(user);
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: 'Erreur modification utilisateur' });</span>
-  }
-};
-export const getUserById = async (req: Request, res: Response) =&gt; {
-    const userId = parseInt(req.params.id);
+export const getMessages = async (req: Request, res: Response) =&gt; {
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ error: 'userId requis' });
+  
     try {
-      const user = await prisma.user.findUnique({
-        where: { USEN_ID: userId },
+      const messages = await prisma.message.findMany({
+        where: {
+          OR: [
+            { MESN_SENDER: parseInt(userId as string) },
+            { MESN_RECEIVER: parseInt(userId as string) },
+          ],
+        },
+        include: {
+          receiver: {  
+            select: {
+              USEC_FNAME: true,
+              USEC_LNAME: true
+            }
+          }
+        },
+        orderBy: { MESD_DATE: 'desc' }
       });
-      res.json(user);
+  
+      res.json(messages);
     } catch (error) {
-<span class="cstat-no" title="statement not covered" >      res.status(500).json({ error: 'Erreur récupération utilisateur' });</span>
+<span class="cstat-no" title="statement not covered" >      res.status(500).json({ error: 'Erreur serveur' });</span>
     }
   };
-  </pre></td></tr></table></pre>
+  
+&nbsp;
+export const markAsRead = async (req: Request, res: Response): Promise&lt;void&gt; =&gt; {
+  const message = await prisma.message.update({
+    where: { MESN_ID: parseInt(req.params.id) },
+    data: { MESB_NEW: false },
+  });
+  res.json(message);
+};
+&nbsp;
+export const deleteMessage = async (req: Request, res: Response): Promise&lt;void&gt; =&gt; {
+  await prisma.message.delete({ where: { MESN_ID: parseInt(req.params.id) } });
+  res.json({ message: 'Message supprimé.' });
+};
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

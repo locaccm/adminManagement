@@ -14,7 +14,7 @@ const app = express();
 setupSwagger(app);
 app.use(express.json());
 app.use(cors()); 
-// Test route
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Admin Dashboard API OK!');
 });
