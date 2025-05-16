@@ -14,7 +14,6 @@ const app = express();
 setupSwagger(app);
 app.use(express.json());
 app.use(cors());
-
 app.get("/", (req: Request, res: Response) => {
   res.send("Admin Dashboard API OK!");
 });
@@ -25,6 +24,8 @@ app.use("/events", eventRoutes);
 app.use("/messages", messageRoutes);
 app.use("/accommodations", accommodationRoutes);
 app.use("/leases", leaseRoutes);
+
+export default app;
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () =>

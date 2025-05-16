@@ -15,8 +15,8 @@ export default [
         sourceType: "module",
       },
       globals: {
-        process: 'readonly',
-        console: 'readonly',
+        process: "readonly",
+        console: "readonly",
       },
     },
     plugins: {
@@ -29,9 +29,12 @@ export default [
       "no-undef": "warn",
       camelcase: ["error", { properties: "always" }],
       "prettier/prettier": "error",
-      "jsdoc/check-tag-names": ['error', {
-        definedTags: ['swagger'],
-      }],
+      "jsdoc/check-tag-names": [
+        "error",
+        {
+          definedTags: ["swagger"],
+        },
+      ],
       "jsdoc/require-description": "error",
     },
   },
