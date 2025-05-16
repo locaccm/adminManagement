@@ -2,7 +2,9 @@
   "scripts": {
     "test": "jest --coverage --coverageReporters=lcov",
     "dev": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "prisma generate",
+    "prepare": "prisma generate"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
