@@ -2,15 +2,7 @@
 import { Request, Response } from "express";
 import * as accommodationController from "../controllers/accommodationController";
 import prisma from "../lib/prisma";
-
-jest.mock("../lib/prisma", () => ({
-  accommodation: {
-    findMany: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
-  },
-}));
+jest.mock("../lib/prisma");
 
 describe("accommodationController", () => {
   const res = {

@@ -2,18 +2,8 @@
 import { Request, Response } from "express";
 import * as eventController from "../controllers/eventController";
 import prisma from "../lib/prisma";
+jest.mock("../lib/prisma");
 
-jest.mock("../lib/prisma", () => ({
-  user: { findUnique: jest.fn() },
-  lease: { findFirst: jest.fn() },
-  event: {
-    findMany: jest.fn(),
-    findUnique: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
-  },
-}));
 
 describe("eventController", () => {
   const res = {

@@ -2,15 +2,8 @@
 import { Request, Response } from "express";
 import * as leaseController from "../controllers/leaseController";
 import prisma from "../lib/prisma";
+jest.mock("../lib/prisma");
 
-jest.mock("../lib/prisma", () => ({
-  lease: {
-    findMany: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
-  },
-}));
 
 describe("LeaseController", () => {
   const res = {

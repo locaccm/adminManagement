@@ -2,14 +2,8 @@
 import { Request, Response } from "express";
 import * as messageController from "../controllers/messageController";
 import prisma from "../lib/prisma";
+jest.mock("../lib/prisma");
 
-jest.mock("../lib/prisma", () => ({
-  message: {
-    findMany: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
-  },
-}));
 
 describe("MessageController", () => {
   const res = {

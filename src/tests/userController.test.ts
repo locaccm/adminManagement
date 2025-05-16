@@ -2,14 +2,8 @@
 import { Request, Response } from "express";
 import * as userController from "../controllers/userController";
 import prisma from "../lib/prisma";
+jest.mock("../lib/prisma");
 
-jest.mock("../lib/prisma", () => ({
-  user: {
-    findMany: jest.fn(),
-    update: jest.fn(),
-    findUnique: jest.fn(),
-  },
-}));
 
 describe("userController", () => {
   const mockRes = () => {

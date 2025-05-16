@@ -1,12 +1,8 @@
+/* eslint-env jest */
 import request from "supertest";
 import app from "../index";
 import prisma from "../lib/prisma";
-
-jest.mock("../lib/prisma", () => ({
-  user: {
-    findMany: jest.fn(),
-  },
-}));
+jest.mock("../lib/prisma");
 
 describe("GET /users", () => {
   afterEach(() => {

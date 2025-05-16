@@ -1,5 +1,7 @@
+/* eslint-env jest */
 import request from "supertest";
 import app from "../index";
+jest.mock("../lib/prisma");
 
 describe("Lease Routes", () => {
   describe("GET /leases", () => {
