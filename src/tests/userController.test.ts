@@ -2,8 +2,7 @@
 import { Request, Response } from "express";
 import * as userController from "../controllers/userController";
 import prisma from "../lib/prisma";
-jest.mock("../lib/prisma");
-
+jest.mock("@prisma/client");
 
 describe("userController", () => {
   const mockRes = () => {

@@ -2,7 +2,7 @@
 import request from "supertest";
 import app from "../index";
 import prisma from "../lib/prisma";
-jest.mock("../lib/prisma");
+jest.mock("@prisma/client");
 
 describe("GET /users", () => {
   afterEach(() => {

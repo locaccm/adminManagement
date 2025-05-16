@@ -9,9 +9,7 @@
     "/accommodations": {
       "get": {
         "summary": "Retrieve all accommodations for a specific owner",
-        "tags": [
-          "Accommodations"
-        ],
+        "tags": ["Accommodations"],
         "parameters": [
           {
             "in": "query",
@@ -37,9 +35,7 @@
       },
       "post": {
         "summary": "Create a new accommodation",
-        "tags": [
-          "Accommodations"
-        ],
+        "tags": ["Accommodations"],
         "requestBody": {
           "required": true,
           "content": {
@@ -83,9 +79,7 @@
     "/accommodations/{id}": {
       "put": {
         "summary": "Update an existing accommodation",
-        "tags": [
-          "Accommodations"
-        ],
+        "tags": ["Accommodations"],
         "parameters": [
           {
             "in": "path",
@@ -132,9 +126,7 @@
       },
       "delete": {
         "summary": "Delete an accommodation",
-        "tags": [
-          "Accommodations"
-        ],
+        "tags": ["Accommodations"],
         "parameters": [
           {
             "in": "path",
@@ -159,9 +151,7 @@
     "/events": {
       "get": {
         "summary": "Retrieve events based on the connected user",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "parameters": [
           {
             "in": "query",
@@ -187,9 +177,7 @@
       },
       "post": {
         "summary": "Create a new event",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "requestBody": {
           "required": true,
           "content": {
@@ -232,9 +220,7 @@
     "/events/{id}": {
       "get": {
         "summary": "Retrieve a specific event by its ID",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "parameters": [
           {
             "in": "path",
@@ -257,9 +243,7 @@
       },
       "put": {
         "summary": "Update an existing event",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "parameters": [
           {
             "in": "path",
@@ -305,9 +289,7 @@
       },
       "delete": {
         "summary": "Delete an event",
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "parameters": [
           {
             "in": "path",
@@ -332,9 +314,7 @@
     "/leases": {
       "get": {
         "summary": "Retrieve leases associated with a user",
-        "tags": [
-          "Leases"
-        ],
+        "tags": ["Leases"],
         "parameters": [
           {
             "in": "query",
@@ -360,9 +340,7 @@
       },
       "post": {
         "summary": "Create a new lease",
-        "tags": [
-          "Leases"
-        ],
+        "tags": ["Leases"],
         "requestBody": {
           "required": true,
           "content": {
@@ -412,9 +390,7 @@
     "/leases/{id}": {
       "put": {
         "summary": "Update an existing lease",
-        "tags": [
-          "Leases"
-        ],
+        "tags": ["Leases"],
         "parameters": [
           {
             "in": "path",
@@ -470,9 +446,7 @@
       },
       "delete": {
         "summary": "Delete a lease",
-        "tags": [
-          "Leases"
-        ],
+        "tags": ["Leases"],
         "parameters": [
           {
             "in": "path",
@@ -497,9 +471,7 @@
     "/messages": {
       "get": {
         "summary": "Retrieve messages for a specific user",
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "parameters": [
           {
             "in": "query",
@@ -527,9 +499,7 @@
     "/messages/{id}/read": {
       "put": {
         "summary": "Mark a message as read",
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "parameters": [
           {
             "in": "path",
@@ -554,9 +524,7 @@
     "/messages/{id}": {
       "delete": {
         "summary": "Delete a message",
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "parameters": [
           {
             "in": "path",
@@ -581,9 +549,7 @@
     "/users": {
       "get": {
         "summary": "Retrieve the list of users with optional filters",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "in": "query",
@@ -620,9 +586,7 @@
     "/users/{id}": {
       "get": {
         "summary": "Retrieve a user by ID",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "in": "path",
@@ -641,9 +605,7 @@
       },
       "put": {
         "summary": "Update user information",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "in": "path",

@@ -1,4 +1,5 @@
-const mockPrisma = {
+export const PrismaClient = jest.fn().mockImplementation(() => {
+  return {
     user: {
       findMany: jest.fn(),
       findUnique: jest.fn(),
@@ -30,6 +31,4 @@ const mockPrisma = {
       delete: jest.fn(),
     },
   };
-  
-  export default mockPrisma;
-  
+});

@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import * as accommodationController from "../controllers/accommodationController";
 import prisma from "../lib/prisma";
-jest.mock("../lib/prisma");
+jest.mock("@prisma/client");
 
 describe("accommodationController", () => {
   const res = {

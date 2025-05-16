@@ -2,8 +2,7 @@
 import { Request, Response } from "express";
 import * as leaseController from "../controllers/leaseController";
 import prisma from "../lib/prisma";
-jest.mock("../lib/prisma");
-
+jest.mock("@prisma/client");
 
 describe("LeaseController", () => {
   const res = {

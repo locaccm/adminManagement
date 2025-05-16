@@ -2,8 +2,7 @@
 import { Request, Response } from "express";
 import * as eventController from "../controllers/eventController";
 import prisma from "../lib/prisma";
-jest.mock("../lib/prisma");
-
+jest.mock("@prisma/client");
 
 describe("eventController", () => {
   const res = {
