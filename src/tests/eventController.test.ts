@@ -61,7 +61,7 @@ describe("eventController", () => {
     const req = { query: {} } as unknown as Request;
     await eventController.getEvents(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: "userId requis" });
+    expect(res.json).toHaveBeenCalledWith({ error: "userId is required" });
   });
 
   test("getEventById", async () => {
@@ -79,7 +79,7 @@ describe("eventController", () => {
   test("createEvent", async () => {
     const req = {
       body: {
-        EVEC_LIB: "Réunion",
+        EVEC_LIB: "Meeting",
         EVED_START: "2025-05-14T10:00:00Z",
         EVED_END: "2025-05-14T12:00:00Z",
         USEN_ID: 1,
@@ -121,6 +121,6 @@ describe("eventController", () => {
     expect(prisma.event.delete).toHaveBeenCalledWith({
       where: { EVEN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Événement supprimé." });
+    expect(res.json).toHaveBeenCalledWith({ message: "Event deleted successfully." });
   });
 });

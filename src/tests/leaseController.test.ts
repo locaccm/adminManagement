@@ -21,7 +21,7 @@ describe("LeaseController", () => {
     jest.clearAllMocks();
   });
 
-  test("getLeases retourne les baux pour un utilisateur", async () => {
+  test("getLeases returns leases for a user", async () => {
     const req = { query: { userId: "1" } } as unknown as Request;
 
     (prisma.lease.findMany as jest.Mock).mockResolvedValue([
@@ -36,14 +36,14 @@ describe("LeaseController", () => {
     expect(res.json).toHaveBeenCalledWith([{ LEAN_ID: 1, LEAN_RENT: 500 }]);
   });
 
-  test("getLeases sans userId retourne une erreur 400", async () => {
+  test("getLeases without userId returns 400", async () => {
     const req = { query: {} } as unknown as Request;
     await leaseController.getLeases(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: "userId requis" });
+    expect(res.json).toHaveBeenCalledWith({ error: "userId is required" });
   });
 
-  test("createLease ajoute un bail", async () => {
+  test("createLease creates a lease", async () => {
     const req = { body: { LEAN_RENT: 700 } } as unknown as Request;
 
     (prisma.lease.create as jest.Mock).mockResolvedValue({
@@ -59,7 +59,7 @@ describe("LeaseController", () => {
     expect(res.json).toHaveBeenCalledWith({ LEAN_ID: 1, LEAN_RENT: 700 });
   });
 
-  test("updateLease modifie un bail", async () => {
+  test("updateLease updates a lease", async () => {
     const req = {
       params: { id: "2" },
       body: { LEAN_RENT: 800 },
@@ -79,7 +79,7 @@ describe("LeaseController", () => {
     expect(res.json).toHaveBeenCalledWith({ LEAN_ID: 2, LEAN_RENT: 800 });
   });
 
-  test("deleteLease supprime un bail", async () => {
+  test("deleteLease deletes a lease", async () => {
     const req = { params: { id: "3" } } as unknown as Request;
 
     (prisma.lease.delete as jest.Mock).mockResolvedValue(undefined);
@@ -89,6 +89,6 @@ describe("LeaseController", () => {
     expect(prisma.lease.delete).toHaveBeenCalledWith({
       where: { LEAN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Bail supprimé." });
+    expect(res.json).toHaveBeenCalledWith({ message: "Lease deleted." });
   });
 });

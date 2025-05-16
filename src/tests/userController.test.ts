@@ -1,10 +1,6 @@
-import {
-  getUsers,
-  updateUser,
-  getUserById,
-} from "../controllers/userController";
-import prisma from "../lib/prisma";
 import { Request, Response } from "express";
+import * as userController from "../controllers/userController";
+import prisma from "../lib/prisma";
 
 jest.mock("../lib/prisma", () => ({
   user: {
@@ -44,7 +40,7 @@ describe("userController", () => {
       ];
       (prisma.user.findMany as jest.Mock).mockResolvedValue(fakeUsers);
 
-      await getUsers(req, res);
+      await userController.getUsers(req, res);
 
       expect(prisma.user.findMany).toHaveBeenCalledWith({
         where: {
@@ -65,7 +61,7 @@ describe("userController", () => {
       const user = { USEN_ID: 3, USEC_LNAME: "Martin", USEC_FNAME: "Sophie" };
       (prisma.user.findUnique as jest.Mock).mockResolvedValue(user);
 
-      await getUserById(req, res);
+      await userController.getUserById(req, res);
 
       expect(prisma.user.findUnique).toHaveBeenCalledWith({
         where: { USEN_ID: 3 },
@@ -92,7 +88,7 @@ describe("userController", () => {
       const updatedUser = { USEN_ID: 5, ...req.body };
       (prisma.user.update as jest.Mock).mockResolvedValue(updatedUser);
 
-      await updateUser(req, res);
+      await userController.updateUser(req, res);
 
       expect(prisma.user.update).toHaveBeenCalledWith({
         where: { USEN_ID: 5 },

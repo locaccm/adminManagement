@@ -39,7 +39,7 @@ describe("accommodationController", () => {
 
     await accommodationController.getAccommodations(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: "userId requis" });
+    expect(res.json).toHaveBeenCalledWith({ error: "userId is required" });
   });
 
   test("createAccommodation - success", async () => {
@@ -89,6 +89,6 @@ describe("accommodationController", () => {
     expect(prisma.accommodation.delete).toHaveBeenCalledWith({
       where: { ACCN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Logement supprimé." });
+    expect(res.json).toHaveBeenCalledWith({ message: "Accommodation deleted successfully." });
   });
 });

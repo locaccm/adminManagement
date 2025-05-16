@@ -20,7 +20,7 @@ describe("MessageController", () => {
     jest.clearAllMocks();
   });
 
-  test("getMessages retourne les messages", async () => {
+  test("getMessages returns messages", async () => {
     const req = { query: { userId: "1" } } as unknown as Request;
 
     (prisma.message.findMany as jest.Mock).mockResolvedValue([
@@ -35,14 +35,14 @@ describe("MessageController", () => {
     ]);
   });
 
-  test("getMessages sans userId retourne une erreur 400", async () => {
+  test("getMessages without userId returns 400", async () => {
     const req = { query: {} } as unknown as Request;
     await messageController.getMessages(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: "userId requis" });
+    expect(res.json).toHaveBeenCalledWith({ error: "userId is required" });
   });
 
-  test("markAsRead met un message comme lu", async () => {
+  test("markAsRead marks a message as read", async () => {
     const req = { params: { id: "5" } } as unknown as Request;
 
     (prisma.message.update as jest.Mock).mockResolvedValue({
@@ -59,7 +59,7 @@ describe("MessageController", () => {
     expect(res.json).toHaveBeenCalledWith({ MESN_ID: 5, MESB_NEW: false });
   });
 
-  test("deleteMessage supprime un message", async () => {
+  test("deleteMessage deletes a message", async () => {
     const req = { params: { id: "3" } } as unknown as Request;
 
     (prisma.message.delete as jest.Mock).mockResolvedValue(undefined);
@@ -69,6 +69,6 @@ describe("MessageController", () => {
     expect(prisma.message.delete).toHaveBeenCalledWith({
       where: { MESN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Message supprimé." });
+    expect(res.json).toHaveBeenCalledWith({ message: "Message deleted." });
   });
 });
