@@ -6,9 +6,15 @@ import prisma from "../lib/prisma";
  * Filters based on `userId` passed in query parameters.
  * Includes receiver's first and last name.
  */
-export const getMessages = async (req: Request, res: Response) => {
+export const getMessages = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const { userId } = req.query;
-  if (!userId) return res.status(400).json({ error: "userId is required" });
+  if (!userId) {
+    res.status(400).json({ error: "userId is required" });
+    return;
+  }
 
   try {
     const messages = await prisma.message.findMany({
@@ -30,7 +36,7 @@ export const getMessages = async (req: Request, res: Response) => {
     });
 
     res.json(messages);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Server error while fetching messages" });
   }
 };

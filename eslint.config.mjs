@@ -14,6 +14,10 @@ export default [
         ecmaVersion: 2021,
         sourceType: "module",
       },
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+      },
     },
     plugins: {
       "@typescript-eslint": typescript,
@@ -25,7 +29,9 @@ export default [
       "no-undef": "warn",
       camelcase: ["error", { properties: "always" }],
       "prettier/prettier": "error",
-      "jsdoc/check-tag-names": "error",
+      "jsdoc/check-tag-names": ['error', {
+        definedTags: ['swagger'],
+      }],
       "jsdoc/require-description": "error",
     },
   },

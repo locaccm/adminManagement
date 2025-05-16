@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import { Request, Response } from "express";
 import * as accommodationController from "../controllers/accommodationController";
 import prisma from "../lib/prisma";
@@ -89,6 +90,8 @@ describe("accommodationController", () => {
     expect(prisma.accommodation.delete).toHaveBeenCalledWith({
       where: { ACCN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Accommodation deleted successfully." });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Accommodation deleted successfully.",
+    });
   });
 });

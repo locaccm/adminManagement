@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import { Request, Response } from "express";
 import * as eventController from "../controllers/eventController";
 import prisma from "../lib/prisma";
@@ -121,6 +122,8 @@ describe("eventController", () => {
     expect(prisma.event.delete).toHaveBeenCalledWith({
       where: { EVEN_ID: 3 },
     });
-    expect(res.json).toHaveBeenCalledWith({ message: "Event deleted successfully." });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Event deleted successfully.",
+    });
   });
 });

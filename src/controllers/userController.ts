@@ -4,7 +4,7 @@ import prisma from "../lib/prisma";
 /**
  * Get a list of users, with optional filters for type, last name, and first name.
  */
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers = async (req: Request, res: Response): Promise<void> => {
   const { type, nom, prenom } = req.query;
 
   try {
@@ -16,7 +16,7 @@ export const getUsers = async (req: Request, res: Response) => {
       },
     });
     res.json(users);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to fetch users" });
   }
 };
@@ -24,7 +24,10 @@ export const getUsers = async (req: Request, res: Response) => {
 /**
  * Update user details by user ID.
  */
-export const updateUser = async (req: Request, res: Response) => {
+export const updateUser = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const userId = parseInt(req.params.id);
   const { USEC_LNAME, USEC_FNAME, USEC_ADDRESS, USEC_TEL, USEC_BIO } = req.body;
 
@@ -34,7 +37,7 @@ export const updateUser = async (req: Request, res: Response) => {
       data: { USEC_LNAME, USEC_FNAME, USEC_ADDRESS, USEC_TEL, USEC_BIO },
     });
     res.json(user);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to update user" });
   }
 };
@@ -42,7 +45,10 @@ export const updateUser = async (req: Request, res: Response) => {
 /**
  * Get a single user by ID.
  */
-export const getUserById = async (req: Request, res: Response) => {
+export const getUserById = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const userId = parseInt(req.params.id);
 
   try {
@@ -50,7 +56,7 @@ export const getUserById = async (req: Request, res: Response) => {
       where: { USEN_ID: userId },
     });
     res.json(user);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to fetch user" });
   }
 };

@@ -14,7 +14,6 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
-    // Get the user type
     const user = await prisma.user.findUnique({
       where: { USEN_ID: userId },
       select: { USEC_TYPE: true },
@@ -25,7 +24,6 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // If OWNER: return their own events
     if (user.USEC_TYPE === "OWNER") {
       const events = await prisma.event.findMany({
         where: { USEN_ID: userId },
@@ -34,7 +32,6 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // If TENANT: fetch events linked to the accommodation from their active lease
     const lease = await prisma.lease.findFirst({
       where: { USEN_ID: userId, LEAB_ACTIVE: true },
       select: { ACCN_ID: true },
@@ -50,7 +47,7 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
     });
 
     res.json(events);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Server error while retrieving events" });
   }
 };
@@ -58,7 +55,10 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
 /**
  * Get a single event by its ID.
  */
-export const getEventById = async (req: Request, res: Response) => {
+export const getEventById = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const event = await prisma.event.findUnique({
     where: { EVEN_ID: parseInt(req.params.id) },
   });
@@ -69,7 +69,10 @@ export const getEventById = async (req: Request, res: Response) => {
  * Create a new event.
  * Expects event data in the request body.
  */
-export const createEvent = async (req: Request, res: Response) => {
+export const createEvent = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const { EVEC_LIB, EVED_START, EVED_END, USEN_ID, ACCN_ID } = req.body;
   const event = await prisma.event.create({
     data: { EVEC_LIB, EVED_START, EVED_END, USEN_ID, ACCN_ID },
@@ -81,7 +84,10 @@ export const createEvent = async (req: Request, res: Response) => {
  * Update an existing event by ID.
  * Expects updated data in the request body.
  */
-export const updateEvent = async (req: Request, res: Response) => {
+export const updateEvent = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const event = await prisma.event.update({
     where: { EVEN_ID: parseInt(req.params.id) },
     data: req.body,
@@ -92,7 +98,10 @@ export const updateEvent = async (req: Request, res: Response) => {
 /**
  * Delete an event by ID.
  */
-export const deleteEvent = async (req: Request, res: Response) => {
+export const deleteEvent = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   await prisma.event.delete({
     where: { EVEN_ID: parseInt(req.params.id) },
   });

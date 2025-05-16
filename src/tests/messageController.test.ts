@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import { Request, Response } from "express";
 import * as messageController from "../controllers/messageController";
 import prisma from "../lib/prisma";
