@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import prisma from '../lib/prisma';
+import { Request, Response } from "express";
+import prisma from "../lib/prisma";
 
 /**
  * Get all messages related to a user (as sender or receiver).
@@ -8,7 +8,7 @@ import prisma from '../lib/prisma';
  */
 export const getMessages = async (req: Request, res: Response) => {
   const { userId } = req.query;
-  if (!userId) return res.status(400).json({ error: 'userId is required' });
+  if (!userId) return res.status(400).json({ error: "userId is required" });
 
   try {
     const messages = await prisma.message.findMany({
@@ -22,23 +22,26 @@ export const getMessages = async (req: Request, res: Response) => {
         receiver: {
           select: {
             USEC_FNAME: true,
-            USEC_LNAME: true
-          }
-        }
+            USEC_LNAME: true,
+          },
+        },
       },
-      orderBy: { MESD_DATE: 'desc' }
+      orderBy: { MESD_DATE: "desc" },
     });
 
     res.json(messages);
   } catch (error) {
-    res.status(500).json({ error: 'Server error while fetching messages' });
+    res.status(500).json({ error: "Server error while fetching messages" });
   }
 };
 
 /**
  * Mark a message as read by updating `MESB_NEW` to false.
  */
-export const markAsRead = async (req: Request, res: Response): Promise<void> => {
+export const markAsRead = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const message = await prisma.message.update({
     where: { MESN_ID: parseInt(req.params.id) },
     data: { MESB_NEW: false },
@@ -49,9 +52,12 @@ export const markAsRead = async (req: Request, res: Response): Promise<void> => 
 /**
  * Delete a message by its ID.
  */
-export const deleteMessage = async (req: Request, res: Response): Promise<void> => {
+export const deleteMessage = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   await prisma.message.delete({
-    where: { MESN_ID: parseInt(req.params.id) }
+    where: { MESN_ID: parseInt(req.params.id) },
   });
-  res.json({ message: 'Message deleted.' });
+  res.json({ message: "Message deleted." });
 };

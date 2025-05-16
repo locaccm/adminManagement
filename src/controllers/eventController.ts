@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import prisma from '../lib/prisma';
+import { Request, Response } from "express";
+import prisma from "../lib/prisma";
 
 /**
  * Get all events related to a user.
@@ -9,7 +9,7 @@ import prisma from '../lib/prisma';
 export const getEvents = async (req: Request, res: Response): Promise<void> => {
   const userId = parseInt(req.query.userId as string);
   if (!userId) {
-    res.status(400).json({ error: 'userId is required' });
+    res.status(400).json({ error: "userId is required" });
     return;
   }
 
@@ -21,12 +21,12 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
     });
 
     if (!user) {
-      res.status(404).json({ error: 'User not found' });
+      res.status(404).json({ error: "User not found" });
       return;
     }
 
     // If OWNER: return their own events
-    if (user.USEC_TYPE === 'OWNER') {
+    if (user.USEC_TYPE === "OWNER") {
       const events = await prisma.event.findMany({
         where: { USEN_ID: userId },
       });
@@ -51,7 +51,7 @@ export const getEvents = async (req: Request, res: Response): Promise<void> => {
 
     res.json(events);
   } catch (error) {
-    res.status(500).json({ error: 'Server error while retrieving events' });
+    res.status(500).json({ error: "Server error while retrieving events" });
   }
 };
 
@@ -96,5 +96,5 @@ export const deleteEvent = async (req: Request, res: Response) => {
   await prisma.event.delete({
     where: { EVEN_ID: parseInt(req.params.id) },
   });
-  res.json({ message: 'Event deleted successfully.' });
+  res.json({ message: "Event deleted successfully." });
 };

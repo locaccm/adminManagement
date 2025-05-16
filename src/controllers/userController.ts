@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import prisma from '../lib/prisma';
+import { Request, Response } from "express";
+import prisma from "../lib/prisma";
 
 /**
  * Get a list of users, with optional filters for type, last name, and first name.
@@ -17,7 +17,7 @@ export const getUsers = async (req: Request, res: Response) => {
     });
     res.json(users);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch users' });
+    res.status(500).json({ error: "Failed to fetch users" });
   }
 };
 
@@ -35,7 +35,7 @@ export const updateUser = async (req: Request, res: Response) => {
     });
     res.json(user);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update user' });
+    res.status(500).json({ error: "Failed to update user" });
   }
 };
 
@@ -51,6 +51,6 @@ export const getUserById = async (req: Request, res: Response) => {
     });
     res.json(user);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch user' });
+    res.status(500).json({ error: "Failed to fetch user" });
   }
 };

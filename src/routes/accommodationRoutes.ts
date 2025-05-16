@@ -1,10 +1,10 @@
-import express from 'express';
+import express from "express";
 import {
   getAccommodations,
   createAccommodation,
   updateAccommodation,
-  deleteAccommodation
-} from '../controllers/accommodationController';
+  deleteAccommodation,
+} from "../controllers/accommodationController";
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ const router = express.Router();
  *       500:
  *         description: Erreur serveur
  */
-router.get('/', getAccommodations);
+router.get("/", getAccommodations);
 
 /**
  * @swagger
@@ -70,7 +70,7 @@ router.get('/', getAccommodations);
  *       500:
  *         description: Erreur serveur
  */
-router.post('/', createAccommodation);
+router.post("/", createAccommodation);
 
 /**
  * @swagger
@@ -106,7 +106,7 @@ router.post('/', createAccommodation);
  *       500:
  *         description: Erreur serveur
  */
-router.put('/:id', updateAccommodation);
+router.put("/:id", updateAccommodation);
 
 /**
  * @swagger
@@ -127,6 +127,6 @@ router.put('/:id', updateAccommodation);
  *       500:
  *         description: Erreur serveur
  */
-router.delete('/:id', deleteAccommodation);
+router.delete("/:id", deleteAccommodation);
 
 export default router;

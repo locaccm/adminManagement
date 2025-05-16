@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 import {
   getMessages,
   markAsRead,
-  deleteMessage
-} from '../controllers/messageController';
+  deleteMessage,
+} from "../controllers/messageController";
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ const router = express.Router();
  *       500:
  *         description: Erreur serveur
  */
-router.get('/', getMessages as any);
+router.get("/", getMessages as any);
 
 /**
  * @swagger
@@ -56,7 +56,7 @@ router.get('/', getMessages as any);
  *       500:
  *         description: Erreur serveur
  */
-router.put('/:id/read', markAsRead);
+router.put("/:id/read", markAsRead);
 
 /**
  * @swagger
@@ -77,6 +77,6 @@ router.put('/:id/read', markAsRead);
  *       500:
  *         description: Erreur serveur
  */
-router.delete('/:id', deleteMessage);
+router.delete("/:id", deleteMessage);
 
 export default router;

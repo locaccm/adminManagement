@@ -1,10 +1,10 @@
-import express from 'express';
+import express from "express";
 import {
   getLeases,
   createLease,
   updateLease,
-  deleteLease
-} from '../controllers/leaseController';
+  deleteLease,
+} from "../controllers/leaseController";
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ const router = express.Router();
  *       500:
  *         description: Erreur serveur
  */
-router.get('/', getLeases);
+router.get("/", getLeases);
 
 /**
  * @swagger
@@ -74,7 +74,7 @@ router.get('/', getLeases);
  *       500:
  *         description: Erreur lors de la création du bail
  */
-router.post('/', createLease);
+router.post("/", createLease);
 
 /**
  * @swagger
@@ -116,7 +116,7 @@ router.post('/', createLease);
  *       500:
  *         description: Erreur serveur
  */
-router.put('/:id', updateLease);
+router.put("/:id", updateLease);
 
 /**
  * @swagger
@@ -137,6 +137,6 @@ router.put('/:id', updateLease);
  *       500:
  *         description: Erreur serveur
  */
-router.delete('/:id', deleteLease);
+router.delete("/:id", deleteLease);
 
 export default router;

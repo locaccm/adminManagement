@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 import {
   getUsers,
   updateUser,
   getUserById,
-} from '../controllers/userController';
+} from "../controllers/userController";
 
 const router = express.Router();
 
@@ -40,7 +40,7 @@ const router = express.Router();
  *       200:
  *         description: Liste des utilisateurs récupérée avec succès
  */
-router.get('/', getUsers);
+router.get("/", getUsers);
 
 /**
  * @swagger
@@ -58,7 +58,7 @@ router.get('/', getUsers);
  *       200:
  *         description: Données de l'utilisateur
  */
-router.get('/:id', getUserById);
+router.get("/:id", getUserById);
 
 /**
  * @swagger
@@ -93,6 +93,6 @@ router.get('/:id', getUserById);
  *       200:
  *         description: Utilisateur modifié avec succès
  */
-router.put('/:id', updateUser);
+router.put("/:id", updateUser);
 
 export default router;

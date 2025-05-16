@@ -1,5 +1,11 @@
-import express from 'express';
-import { getEvents, getEventById, createEvent, updateEvent, deleteEvent } from '../controllers/eventController';
+import express from "express";
+import {
+  getEvents,
+  getEventById,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+} from "../controllers/eventController";
 
 const router = express.Router();
 
@@ -31,7 +37,7 @@ const router = express.Router();
  *       500:
  *         description: Erreur serveur
  */
-router.get('/', getEvents);
+router.get("/", getEvents);
 
 /**
  * @swagger
@@ -52,7 +58,7 @@ router.get('/', getEvents);
  *       500:
  *         description: Erreur serveur
  */
-router.get('/:id', getEventById);
+router.get("/:id", getEventById);
 
 /**
  * @swagger
@@ -85,7 +91,7 @@ router.get('/:id', getEventById);
  *       500:
  *         description: Erreur serveur
  */
-router.post('/', createEvent);
+router.post("/", createEvent);
 
 /**
  * @swagger
@@ -121,7 +127,7 @@ router.post('/', createEvent);
  *       500:
  *         description: Erreur serveur
  */
-router.put('/:id', updateEvent);
+router.put("/:id", updateEvent);
 
 /**
  * @swagger
@@ -142,6 +148,6 @@ router.put('/:id', updateEvent);
  *       500:
  *         description: Erreur serveur
  */
-router.delete('/:id', deleteEvent);
+router.delete("/:id", deleteEvent);
 
 export default router;
