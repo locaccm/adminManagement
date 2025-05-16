@@ -12,14 +12,14 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Leases
- *   description: Gestion des baux (contrats de location)
+ *   description: Management of rental leases
  */
 
 /**
  * @swagger
  * /leases:
  *   get:
- *     summary: Récupérer les baux liés à un utilisateur
+ *     summary: Retrieve leases associated with a user
  *     tags: [Leases]
  *     parameters:
  *       - in: query
@@ -27,14 +27,14 @@ const router = express.Router();
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID de l'utilisateur (owner ou tenant)
+ *         description: ID of the user (owner or tenant)
  *     responses:
  *       200:
- *         description: Liste des baux récupérée avec succès
+ *         description: List of leases successfully retrieved
  *       400:
- *         description: Paramètre userId manquant
+ *         description: Missing userId parameter
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.get("/", getLeases);
 
@@ -42,7 +42,7 @@ router.get("/", getLeases);
  * @swagger
  * /leases:
  *   post:
- *     summary: Créer un nouveau bail
+ *     summary: Create a new lease
  *     tags: [Leases]
  *     requestBody:
  *       required: true
@@ -70,9 +70,9 @@ router.get("/", getLeases);
  *                 type: integer
  *     responses:
  *       200:
- *         description: Bail créé avec succès
+ *         description: Lease successfully created
  *       500:
- *         description: Erreur lors de la création du bail
+ *         description: Error while creating the lease
  */
 router.post("/", createLease);
 
@@ -80,7 +80,7 @@ router.post("/", createLease);
  * @swagger
  * /leases/{id}:
  *   put:
- *     summary: Mettre à jour un bail existant
+ *     summary: Update an existing lease
  *     tags: [Leases]
  *     parameters:
  *       - in: path
@@ -88,7 +88,7 @@ router.post("/", createLease);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID du bail à mettre à jour
+ *         description: ID of the lease to update
  *     requestBody:
  *       required: true
  *       content:
@@ -112,9 +112,9 @@ router.post("/", createLease);
  *                 type: integer
  *     responses:
  *       200:
- *         description: Bail mis à jour
+ *         description: Lease successfully updated
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.put("/:id", updateLease);
 
@@ -122,7 +122,7 @@ router.put("/:id", updateLease);
  * @swagger
  * /leases/{id}:
  *   delete:
- *     summary: Supprimer un bail
+ *     summary: Delete a lease
  *     tags: [Leases]
  *     parameters:
  *       - in: path
@@ -130,12 +130,12 @@ router.put("/:id", updateLease);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID du bail à supprimer
+ *         description: ID of the lease to delete
  *     responses:
  *       200:
- *         description: Bail supprimé
+ *         description: Lease successfully deleted
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.delete("/:id", deleteLease);
 

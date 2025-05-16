@@ -12,14 +12,14 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Accommodations
- *   description: Gestion des logements proposés par les propriétaires
+ *   description: Management of accommodations offered by owners
  */
 
 /**
  * @swagger
  * /accommodations:
  *   get:
- *     summary: Récupérer tous les logements d’un propriétaire
+ *     summary: Retrieve all accommodations for a specific owner
  *     tags: [Accommodations]
  *     parameters:
  *       - in: query
@@ -27,14 +27,14 @@ const router = express.Router();
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID de l'utilisateur (owner)
+ *         description: ID of the user (owner)
  *     responses:
  *       200:
- *         description: Liste des logements récupérée
+ *         description: List of accommodations retrieved successfully
  *       400:
- *         description: userId requis
+ *         description: userId is required
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.get("/", getAccommodations);
 
@@ -42,7 +42,7 @@ router.get("/", getAccommodations);
  * @swagger
  * /accommodations:
  *   post:
- *     summary: Créer un nouveau logement
+ *     summary: Create a new accommodation
  *     tags: [Accommodations]
  *     requestBody:
  *       required: true
@@ -66,9 +66,9 @@ router.get("/", getAccommodations);
  *                 type: string
  *     responses:
  *       200:
- *         description: Logement créé
+ *         description: Accommodation created successfully
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.post("/", createAccommodation);
 
@@ -76,13 +76,13 @@ router.post("/", createAccommodation);
  * @swagger
  * /accommodations/{id}:
  *   put:
- *     summary: Mettre à jour un logement existant
+ *     summary: Update an existing accommodation
  *     tags: [Accommodations]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID du logement
+ *         description: ID of the accommodation to update
  *         schema:
  *           type: integer
  *     requestBody:
@@ -102,9 +102,9 @@ router.post("/", createAccommodation);
  *                 type: string
  *     responses:
  *       200:
- *         description: Logement mis à jour
+ *         description: Accommodation updated successfully
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.put("/:id", updateAccommodation);
 
@@ -112,20 +112,20 @@ router.put("/:id", updateAccommodation);
  * @swagger
  * /accommodations/{id}:
  *   delete:
- *     summary: Supprimer un logement
+ *     summary: Delete an accommodation
  *     tags: [Accommodations]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID du logement
+ *         description: ID of the accommodation to delete
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Logement supprimé
+ *         description: Accommodation deleted successfully
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.delete("/:id", deleteAccommodation);
 

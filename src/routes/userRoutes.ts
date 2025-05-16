@@ -11,34 +11,34 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Users
- *   description: Gestion des utilisateurs (owner et tenant)
+ *   description: Management of users (owners and tenants)
  */
 
 /**
  * @swagger
  * /users:
  *   get:
- *     summary: Récupérer la liste des utilisateurs avec filtres
+ *     summary: Retrieve the list of users with optional filters
  *     tags: [Users]
  *     parameters:
  *       - in: query
  *         name: type
  *         schema:
  *           type: string
- *         description: Filtrer par type (OWNER ou TENANT)
+ *         description: Filter by user type (OWNER or TENANT)
  *       - in: query
  *         name: nom
  *         schema:
  *           type: string
- *         description: Filtrer par nom
+ *         description: Filter by last name
  *       - in: query
  *         name: prenom
  *         schema:
  *           type: string
- *         description: Filtrer par prénom
+ *         description: Filter by first name
  *     responses:
  *       200:
- *         description: Liste des utilisateurs récupérée avec succès
+ *         description: List of users retrieved successfully
  */
 router.get("/", getUsers);
 
@@ -46,7 +46,7 @@ router.get("/", getUsers);
  * @swagger
  * /users/{id}:
  *   get:
- *     summary: Récupérer un utilisateur par ID
+ *     summary: Retrieve a user by ID
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -56,7 +56,7 @@ router.get("/", getUsers);
  *           type: integer
  *     responses:
  *       200:
- *         description: Données de l'utilisateur
+ *         description: User data retrieved successfully
  */
 router.get("/:id", getUserById);
 
@@ -64,7 +64,7 @@ router.get("/:id", getUserById);
  * @swagger
  * /users/{id}:
  *   put:
- *     summary: Modifier un utilisateur
+ *     summary: Update user information
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -72,6 +72,7 @@ router.get("/:id", getUserById);
  *         required: true
  *         schema:
  *           type: integer
+ *         description: ID of the user to update
  *     requestBody:
  *       required: true
  *       content:
@@ -91,7 +92,7 @@ router.get("/:id", getUserById);
  *                 type: string
  *     responses:
  *       200:
- *         description: Utilisateur modifié avec succès
+ *         description: User updated successfully
  */
 router.put("/:id", updateUser);
 

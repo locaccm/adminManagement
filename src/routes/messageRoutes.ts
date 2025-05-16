@@ -11,14 +11,14 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Messages
- *   description: Gestion des messages utilisateurs
+ *   description: User message management
  */
 
 /**
  * @swagger
  * /messages:
  *   get:
- *     summary: Récupère les messages d'un utilisateur
+ *     summary: Retrieve messages for a specific user
  *     tags: [Messages]
  *     parameters:
  *       - in: query
@@ -26,14 +26,14 @@ const router = express.Router();
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID de l'utilisateur concerné
+ *         description: ID of the user whose messages should be retrieved
  *     responses:
  *       200:
- *         description: Liste des messages
+ *         description: List of messages
  *       400:
- *         description: ID manquant
+ *         description: Missing userId
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.get("/", getMessages as any);
 
@@ -41,7 +41,7 @@ router.get("/", getMessages as any);
  * @swagger
  * /messages/{id}/read:
  *   put:
- *     summary: Marquer un message comme lu
+ *     summary: Mark a message as read
  *     tags: [Messages]
  *     parameters:
  *       - in: path
@@ -49,12 +49,12 @@ router.get("/", getMessages as any);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID du message à mettre à jour
+ *         description: ID of the message to update
  *     responses:
  *       200:
- *         description: Message mis à jour
+ *         description: Message marked as read
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.put("/:id/read", markAsRead);
 
@@ -62,7 +62,7 @@ router.put("/:id/read", markAsRead);
  * @swagger
  * /messages/{id}:
  *   delete:
- *     summary: Supprimer un message
+ *     summary: Delete a message
  *     tags: [Messages]
  *     parameters:
  *       - in: path
@@ -70,12 +70,12 @@ router.put("/:id/read", markAsRead);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID du message à supprimer
+ *         description: ID of the message to delete
  *     responses:
  *       200:
- *         description: Message supprimé
+ *         description: Message successfully deleted
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.delete("/:id", deleteMessage);
 

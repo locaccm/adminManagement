@@ -13,14 +13,14 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Events
- *   description: Gestion des événements (réunions, inspections, etc.)
+ *   description: Management of events (meetings, inspections, etc.)
  */
 
 /**
  * @swagger
  * /events:
  *   get:
- *     summary: Récupérer les événements selon l'utilisateur connecté
+ *     summary: Retrieve events based on the connected user
  *     tags: [Events]
  *     parameters:
  *       - in: query
@@ -28,14 +28,14 @@ const router = express.Router();
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID de l'utilisateur (tenant ou owner)
+ *         description: ID of the user (tenant or owner)
  *     responses:
  *       200:
- *         description: Liste des événements récupérée
+ *         description: List of events retrieved successfully
  *       400:
- *         description: userId requis
+ *         description: userId is required
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.get("/", getEvents);
 
@@ -43,20 +43,20 @@ router.get("/", getEvents);
  * @swagger
  * /events/{id}:
  *   get:
- *     summary: Récupérer un événement par son ID
+ *     summary: Retrieve a specific event by its ID
  *     tags: [Events]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID de l'événement
+ *         description: ID of the event
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Événement trouvé
+ *         description: Event found
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.get("/:id", getEventById);
 
@@ -64,7 +64,7 @@ router.get("/:id", getEventById);
  * @swagger
  * /events:
  *   post:
- *     summary: Créer un nouvel événement
+ *     summary: Create a new event
  *     tags: [Events]
  *     requestBody:
  *       required: true
@@ -87,9 +87,9 @@ router.get("/:id", getEventById);
  *                 type: integer
  *     responses:
  *       200:
- *         description: Événement créé
+ *         description: Event successfully created
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.post("/", createEvent);
 
@@ -97,13 +97,13 @@ router.post("/", createEvent);
  * @swagger
  * /events/{id}:
  *   put:
- *     summary: Modifier un événement existant
+ *     summary: Update an existing event
  *     tags: [Events]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID de l'événement à modifier
+ *         description: ID of the event to update
  *         schema:
  *           type: integer
  *     requestBody:
@@ -123,9 +123,9 @@ router.post("/", createEvent);
  *                 format: date-time
  *     responses:
  *       200:
- *         description: Événement mis à jour
+ *         description: Event successfully updated
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.put("/:id", updateEvent);
 
@@ -133,20 +133,20 @@ router.put("/:id", updateEvent);
  * @swagger
  * /events/{id}:
  *   delete:
- *     summary: Supprimer un événement
+ *     summary: Delete an event
  *     tags: [Events]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: ID de l'événement à supprimer
+ *         description: ID of the event to delete
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Événement supprimé
+ *         description: Event successfully deleted
  *       500:
- *         description: Erreur serveur
+ *         description: Server error
  */
 router.delete("/:id", deleteEvent);
 

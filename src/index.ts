@@ -1,19 +1,19 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import messageRoutes from "./routes/messageRoutes";
 import accommodationRoutes from "./routes/accommodationRoutes";
 import leaseRoutes from "./routes/leaseRoutes";
-import { setupSwagger } from "./swagger";
+import { setupSwagger } from "./api_documentation/swagger";
 
 dotenv.config();
 
 const app = express();
+
 setupSwagger(app);
 app.use(express.json());
-app.use(cors());
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Admin Dashboard API OK!");
 });
