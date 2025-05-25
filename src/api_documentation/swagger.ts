@@ -18,7 +18,7 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-export function setupSwagger(app: Express) {
+export const setupSwagger = (app: Express) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   const docDir = path.join(__dirname, "..", "api_documentation");
@@ -27,7 +27,7 @@ export function setupSwagger(app: Express) {
   }
 
   fs.writeFileSync(
-    path.join(docDir, "swagger.json"),
+    path.join(docDir, "swagger_doc.json"),
     JSON.stringify(swaggerSpec, null, 2),
   );
-}
+};

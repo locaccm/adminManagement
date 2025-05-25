@@ -16,6 +16,7 @@ RUN npm run generate
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 4000
+
 
 CMD ["npm", "start"]
