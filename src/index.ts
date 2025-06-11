@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import messageRoutes from "./routes/messageRoutes";
@@ -11,8 +12,13 @@ dotenv.config();
 
 const app = express();
 
-setupSwagger(app);
+// Ajout du middleware CORS (autorise tout)
+app.use(cors()); //NOSONAR
+
+// Middleware JSON
 app.use(express.json());
+
+setupSwagger(app);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Admin Dashboard API OK!");
