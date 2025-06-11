@@ -26,7 +26,6 @@ app.use("/accommodations", accommodationRoutes);
 app.use("/leases", leaseRoutes);
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () =>
-  console.log(`✅ Serveur lancé sur http://localhost:${PORT}`),
-);
+app.listen(PORT);
+
 export default app;
