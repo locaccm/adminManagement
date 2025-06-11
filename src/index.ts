@@ -25,7 +25,4 @@ app.use("/messages", messageRoutes);
 app.use("/accommodations", accommodationRoutes);
 app.use("/leases", leaseRoutes);
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT);
-
 export default app;
