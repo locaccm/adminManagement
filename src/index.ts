@@ -15,7 +15,7 @@ const app = express();
 // --- CORS configuration ---
 const allowedOrigins: string[] =
   process.env.NODE_ENV === "development"
-    ? ["http://localhost:3000"]
+    ? ["http://localhost:5173"]
     : ["https://yourdomain.com"];
 
 const corsOptions: CorsOptions = {
