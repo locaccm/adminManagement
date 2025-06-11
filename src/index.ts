@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+import cors, { CorsOptions } from "cors";
 import userRoutes from "./routes/userRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import messageRoutes from "./routes/messageRoutes";
@@ -10,6 +11,21 @@ import { setupSwagger } from "./api_documentation/swagger";
 dotenv.config();
 
 const app = express();
+
+// --- CORS configuration ---
+const allowedOrigins: string[] =
+  process.env.NODE_ENV === "development"
+    ? ["http://localhost:3000"]
+    : ["https://yourdomain.com"];
+
+const corsOptions: CorsOptions = {
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+// --- End CORS configuration ---
 
 setupSwagger(app);
 app.use(express.json());
