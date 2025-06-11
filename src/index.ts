@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 // Ajout du middleware CORS (autorise tout)
-app.use(cors());//NOSONAR
+app.use(cors()); //NOSONAR
 
 // Middleware JSON
 app.use(express.json());
