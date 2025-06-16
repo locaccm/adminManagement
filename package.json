@@ -1,11 +1,13 @@
 {
- "scripts": {
+"scripts": {
   "test": "jest --coverage --coverageReporters=lcov",
+  "dbpull": "npx prisma db pull",
   "dev": "ts-node src/server.ts",
   "build": "tsc",
   "generate": "npx prisma generate",
   "start": "npm run generate && node dist/server.js"
-},
+}
+,
   "devDependencies": {
     "@eslint/js": "^9.22.0",
     "@types/cors": "^2.8.17",
