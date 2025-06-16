@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for better analysis
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -30,15 +30,21 @@ jobs:
       - name: Set CORS_ORIGIN
         run: echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> $GITHUB_ENV
 
+      
+      - name: Set AUTH_SERVICE_URL
+        run: echo "AUTH_SERVICE_URL=${{ secrets.AUTH_SERVICE_URL }}" >> $GITHUB_ENV
+
       - name: Verify env vars
         run: |
           echo "DATABASE_URL is set to $DATABASE_URL"
           echo "CORS_ORIGIN is set to $CORS_ORIGIN"
+          echo "AUTH_SERVICE_URL is set to $AUTH_SERVICE_URL"
 
       - name: Run tests with coverage
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+          AUTH_SERVICE_URL: ${{ secrets.AUTH_SERVICE_URL }}
         run: npm run test -- --coverage --coverageReporters=lcov
 
       - name: SonarQube Scan
@@ -47,6 +53,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+          AUTH_SERVICE_URL: ${{ secrets.AUTH_SERVICE_URL }}
 
   eslint:
     name: ESLint Check

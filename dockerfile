@@ -4,35 +4,38 @@ FROM node:20-alpine
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
-# CORS origin (for controlling who can access your API)
+# Auth service environment variable 
+ARG AUTH_SERVICE_URL
+ENV AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
+
+# CORS origin 
 ARG CORS_ORIGIN
 ENV CORS_ORIGIN=${CORS_ORIGIN}
 
 # Set working directory
 WORKDIR /app
 
-# Install git (for pulling submodules, if needed)
+# Install git 
 RUN apk add --no-cache git
 
-# Install dependencies (do this first for better Docker caching)
+# Install dependencies 
 COPY package*.json ./
 RUN npm install
 
-# Copy git submodules definition, if your repo uses them (otherwise, you can remove the next 2 lines)
 COPY .gitmodules ./
 COPY . .
 
-# Initialize git submodules (if needed; remove if not using submodules)
+# Initialize git submodules 
 RUN git submodule update --init --recursive
 
-# Generate Prisma client (make sure the path matches your structure)
+# Generate Prisma client 
 RUN npx prisma generate --schema=prisma/schema.prisma
 
-# Build your project (if using TypeScript or a build step)
+# Build your project
 RUN npm run build
 
-# Expose your application port (change if your app listens on another port)
-EXPOSE 4000
+# Expose your application port 
+EXPOSE 3000
 
 # Start your app
 CMD ["npm", "start"]
