@@ -1,10 +1,10 @@
 FROM node:20-alpine
 
-# Environment variable for your database connection
+# Database connection string (Prisma)
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
-# Auth service environment variable 
+# Auth service URL (can be unused)
 ARG AUTH_SERVICE_URL
 ENV AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
 
@@ -12,27 +12,33 @@ ENV AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
 ARG CORS_ORIGIN
 ENV CORS_ORIGIN=${CORS_ORIGIN}
 
-# Set working directory
+# App port (optional, set via env)
+ARG PORT
+ENV PORT=${PORT}
+
+# Set working directory in the container
 WORKDIR /app
 
-# Install git 
-RUN apk add --no-cache git
-
-# Install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install all dependencies
 RUN npm install
 
-# Copy all project files
+# Copy the rest of your application code
 COPY . .
 
-# Generate Prisma client 
-RUN npx prisma generate --schema=prisma/schema.prisma
+# (Optional) Pull database schema from remote (Prisma) if needed
+RUN npm run dbpull
 
-# Build your project
+# Generate Prisma client (required for Prisma ORM)
+RUN npm run generate
+
+# Build your project (TypeScript, etc)
 RUN npm run build
 
-# Expose your application port
+# Expose the app port (default 3000)
 EXPOSE 3000
 
-# Start your app
+# Start the application
 CMD ["npm", "start"]
