@@ -13,8 +13,14 @@ dotenv.config();
 const app = express();
 
 // Ajout du middleware CORS (autorise tout)
-app.use(cors()); //NOSONAR
-
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN ?? "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization,user-id",
+    credentials: true,
+  }),
+);
 // Middleware JSON
 app.use(express.json());
 
