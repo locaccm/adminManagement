@@ -27,12 +27,18 @@ jobs:
       - name: Set Database URL
         run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
 
-      - name: Verify DATABASE_URL
-        run: echo "DATABASE_URL is set to $DATABASE_URL"
+      - name: Set CORS_ORIGIN
+        run: echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> $GITHUB_ENV
+
+      - name: Verify env vars
+        run: |
+          echo "DATABASE_URL is set to $DATABASE_URL"
+          echo "CORS_ORIGIN is set to $CORS_ORIGIN"
 
       - name: Run tests with coverage
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
         run: npm run test -- --coverage --coverageReporters=lcov
 
       - name: SonarQube Scan
@@ -40,6 +46,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
 
   eslint:
     name: ESLint Check
