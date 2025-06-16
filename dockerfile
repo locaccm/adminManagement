@@ -28,6 +28,8 @@ RUN npm install
 # Copy the rest of your application code
 COPY . .
 
+RUN npm run dbpull
+
 # Generate Prisma client (required for Prisma ORM)
 RUN npm run generate
 
